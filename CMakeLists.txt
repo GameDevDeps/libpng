@@ -681,6 +681,7 @@ if(PNG_SHARED)
                              PUBLIC
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                               $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
   target_link_libraries(libpng.png_shared PUBLIC zlibng.zlib ${M_LIBRARY})
 
@@ -699,6 +700,7 @@ if(PNG_STATIC)
                              PUBLIC
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                               $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
   target_link_libraries(libpng.png_static PUBLIC zlibng.zlibstatic ${M_LIBRARY})
 
@@ -726,6 +728,7 @@ if(PNG_FRAMEWORK AND APPLE)
                              PUBLIC
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                               $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
   target_link_libraries(libpng.png_framework PUBLIC zlibng.zlib ${M_LIBRARY})
 
