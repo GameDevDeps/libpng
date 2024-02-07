@@ -135,7 +135,7 @@ CPMAddPackage(
 find_package(zlib REQUIRED)
 
 # adapter genout.cmake.in
-get_target_property(ZLIB_INCLUDE_DIRS zlib::zlib INCLUDE_DIRECTORIES)
+get_target_property(ZLIB_INCLUDE_DIRS zlibng.zlib INCLUDE_DIRECTORIES)
 string(REGEX MATCH ".*\\$<BUILD_INTERFACE:(.*)>;.*" ZLIB_INCLUDE_DIRS "${ZLIB_INCLUDE_DIRS}")
 set(ZLIB_INCLUDE_DIRS ${CMAKE_MATCH_1})
 
@@ -682,7 +682,7 @@ if(PNG_SHARED)
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-  target_link_libraries(libpng.png_shared PUBLIC zlib::zlib ${M_LIBRARY})
+  target_link_libraries(libpng.png_shared PUBLIC zlibng.zlib ${M_LIBRARY})
 
   add_library(libpng::png_shared ALIAS libpng.png_shared)
   set_target_properties(libpng.png_shared PROPERTIES EXPORT_NAME "png_shared")
@@ -700,7 +700,7 @@ if(PNG_STATIC)
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-  target_link_libraries(libpng.png_static PUBLIC zlib::zlibstatic ${M_LIBRARY})
+  target_link_libraries(libpng.png_static PUBLIC zlibng.zlibstatic ${M_LIBRARY})
 
   add_library(libpng::png_static ALIAS libpng.png_static)
   set_target_properties(libpng.png_static PROPERTIES EXPORT_NAME "png_static")
@@ -727,7 +727,7 @@ if(PNG_FRAMEWORK AND APPLE)
                                $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>
                                $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
                              PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
-  target_link_libraries(libpng.png_framework PUBLIC zlib::zlib ${M_LIBRARY})
+  target_link_libraries(libpng.png_framework PUBLIC zlibng.zlib ${M_LIBRARY})
 
   add_library(libpng::png_framework ALIAS libpng.png_framework)
   set_target_properties(libpng.png_framework PROPERTIES EXPORT_NAME "png_framework")
@@ -935,7 +935,7 @@ if(PNG_SHARED AND PNG_TOOLS)
   set(PNG_BIN_TARGETS libpng.pngfix)
 
   add_executable(libpng.png-fix-itxt ${png_fix_itxt_sources})
-  target_link_libraries(libpng.png-fix-itxt PRIVATE zlib::zlib ${M_LIBRARY})
+  target_link_libraries(libpng.png-fix-itxt PRIVATE zlibng.zlib ${M_LIBRARY})
   list(APPEND PNG_BIN_TARGETS libpng.png-fix-itxt)
 endif()
 
